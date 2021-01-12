@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+*{
+  font-size: 12px;
+  font-family: Verdana;
+}
+.app-full-bleed-dialog .mat-dialog-container {
+  padding: 0;
+}
