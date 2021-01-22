@@ -14,7 +14,7 @@
             <nav>
               <ul id="navigation">
                 <li><a href="home" style="font-size: 20px">Home</a></li>
-                <li class="hot"><a href="list" style="font-size: 20px">Shop</a>
+                <li class="hot"><a href="shop" style="font-size: 20px">Shop</a>
                 </li>
                 <li><a href="contact" style="font-size: 20px">Contact</a></li>
                 <li><a href="#" style="font-size: 20px">Blog</a>
@@ -43,22 +43,28 @@
                   <!--              </form>-->
               </li>
               <li> <a href="login" *ngIf="isLoggedIn == false; else block"><span class="flaticon-user mr-2"> Login</span></a></li>
-              <ng-template #block class="d-flex">
-                <div class="header__top__right__auth ml-2">
-                  <label class="font-italic">Welcome !</label><span class=" text-dark font-weight-bold">{{user.fullName}}
-                  <a role="button" (click)="logout()">&nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt " style="font-size: 17px"></i></a>
-                </span>
-                </div>
-                <div class="header__top__right__auth">
-
+              <ng-template #block class="d-flex ">
+                <div class="header__top__right__auth ml-2 d-flex m-0 p-0">
+                  <div class="dropdown ml-3">
+                    <a class="text-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <label class="fas fa-user-cog text-danger" style="font-size: 17px"></label>
+                    </a>
+                    <div class="dropdown-menu m-0 p-0" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item m-1 mr-1"  role="button" (click)="logout()"><i class="fas fa-sign-out-alt text-danger mr-1" style="font-size: 17px"></i> Đăng xuất</a>
+                      <a class="dropdown-item m-1 mr-1" href="history"><i class="far fa-id-card mr-1 text-danger" style="font-size: 17px"></i> Lịch sử giao dịch</a>
+                    </div>
+                  </div>
+                 <div class="m-0 p-0" >
+                   <span class="mr-1 ml-1 font-italic">Welcome! <span class="text-secondary font-weight-bold">{{user.fullName}}</span></span>
+                 </div>
                 </div>
               </ng-template>
-              <li><a href="cart"><span class="flaticon-shopping-cart text-danger font-weight-bold" style="font-size: 18px"></span></a> </li>
+              <li><a (click)="openCartUser()"><span class="flaticon-shopping-cart text-danger font-weight-bold" style="font-size: 17px"></span></a> </li>
             </ul>
           </div>
         </div>
         <!-- Mobile Menu -->
-        <div class="col-12">
+        <div class="col-12 ">
           <div class="mobile_menu d-block d-lg-none"></div>
         </div>
       </div>

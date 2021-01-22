@@ -1,0 +1,112 @@
+<main>
+  <!-- Hero Area Start-->
+  <!--================Checkout Area =================-->
+  <section class="checkout_area section_padding m-1 p-1">
+    <div class="container">
+      <div class="billing_details">
+        <div class="row">
+          <div class="col-lg-7 mt-5">
+            <h3 style="font-size: 35px; font-weight: bolder" class="text-center">Checkout</h3>
+            <div class="row contact_form" method="post" novalidate="novalidate">
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="first" name="name"/>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="last" name="name"/>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="company" name="company" placeholder="Company name"/>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="number" name="number"/>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="email" name="compemailany"/>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="add1"/>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add2" name="add2"/>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="city" name="city"/>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP"/>
+              </div>
+            </div>
+            <div class="text-center d-flex justify-content-center mt-5">
+              <button class="btn_3 text-center text-light form-control btn-dark border border-dark"
+                      style="width: 250px;height: 50px;font-weight: bolder">
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="order_box">
+              <h2 class="text-center" style="font-size: 25px; font-weight: bolder">Your Order</h2>
+              <ul class="list list_2">
+                <li>
+                  <a>Product
+                    <span>Total</span>
+                  </a>
+                </li>
+                <li *ngFor="let check of listCheckout">
+                  <a>{{check.goodsName}}
+                    <span class="middle text-center"> x {{check.quantity}}</span>
+                    <span class="last">{{(check.quantity * formatNumber(check.price))}}</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list list_2">
+                <li>
+                  <a>Subtotal
+                    <span>{{totalMoney}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Shipping
+                    <span>Flat rate: 50</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Total
+                    <span>{{totalMoney + 50}}</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="payment_item">
+                <input type="radio" id="f-option5" name="selector" (change)="eventDirect()">
+                <label class="ml-2 font-weight-bold text-primary" for="f-option5">Check payments</label>
+                <!--                  <div class="check"></div>-->
+                <p>
+                  Please send a check to Store Name
+                </p>
+              </div>
+              <div class="payment_item active">
+                <input type="radio" id="f-option6" name="selector" (change)="eventPaypal()">
+                <label class="ml-2 font-weight-bold text-primary" for="f-option6">Paypal </label>
+                <div #paypalRef [hidden]="checkPayment===false"></div>
+              </div>
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector"/>
+                <label for="f-option4">I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div>
+              <button (click)="createBill()" *ngIf="checkButton===true"
+                      class="btn_3 btn-info" href="#" style="width: 100%;font-weight: bolder">Order confirmation
+              </button>
+              <button (click)="createBill()" *ngIf="checkButton===false"
+                      class="btn_3 btn-success" href="#" style="width: 100%;font-weight: bolder">Order confirmation
+              </button>
+              <!--              <button class="btn_3 btn-dark" href="#" style="width: 100%;font-weight: bolder">Proceed to Paypal</button>-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
+</main>

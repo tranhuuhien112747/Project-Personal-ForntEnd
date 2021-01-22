@@ -1,0 +1,76 @@
+<main>
+  <!-- Hero Area Start-->
+  <div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap text-center">
+              <h2>Confirmation</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--================ confirmation part start =================-->
+  <section class="confirmation_part section_padding m-1 p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="confirmation_tittle">
+            <span style="font-size: 30px">Thank you. Your order has been received.</span>
+          </div>
+        </div>
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>order info</h4>
+            <ul>
+              <li>
+                <p>order number</p><span>: ON - {{orderNumber}}</span>
+              </li>
+              <li>
+                <p>date</p><span>: {{formatDate(dd, mm, yyyy)}}</span>
+              </li>
+              <li>
+                <p>total</p><span>: {{formatNumber(moneyPayment) + 50}}</span>
+              </li>
+              <li>
+                <p>mayment methord</p><span>: {{checkPayment}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>shipping Address</h4>
+            <ul>
+              <li>
+                <p>Street</p><span>: {{addressUser}}</span>
+              </li>
+              <li>
+                <p>city</p><span>: {{addressUser}}</span>
+              </li>
+              <li>
+                <p>Name</p><span>: {{fullNameUser}}</span>
+              </li>
+              <li>
+                <p>phone</p><span>: {{phoneNumberUser}}</span>
+              </li>
+              <li>
+                <p>email</p><span>: {{email}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-5">
+        <div class="confirmation_tittle mt-5">
+          <a href="history"><span
+            style="font-size: 20px">The order has been saved in the transaction history.</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ confirmation part end =================-->
+</main>

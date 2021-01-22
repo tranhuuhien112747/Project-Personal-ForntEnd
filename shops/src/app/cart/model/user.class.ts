@@ -1,10 +1,11 @@
-export class User {
+export class UserClass {
   public idUser: number;
   public username: string;
   public password: string;
-  public phoneNumber: string;
   public fullName: string;
-  public address: string;
-  public image: string;
   public email: string;
+  public address: string;
+  public phoneNumber: string;
+  public image: string;
+  public status: boolean;
 }

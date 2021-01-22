@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/auth/authentication.service';
 import {TokenStorageService} from '../../service/token-storage/token-storage.service';
 import {Router} from '@angular/router';
+import {NotificationMessageComponent} from '../notification-message/notification-message.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,6 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public isLoggedIn = false;
-  public errorMessage = '';
   public inputType = 'password';
   public isCheckInput = false;
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private route: Router,
     private authenticationService: AuthenticationService,
     private tokenStorageService: TokenStorageService,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -31,6 +33,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  openMessageSuccess() {
+    const timeout = 1500;
+    const dialogRef = this.dialog.open(NotificationMessageComponent, {
+      panelClass: 'app-full-bleed-dialog',
+      width: '500px',
+      disableClose: true
+    });
+    dialogRef.afterOpened().subscribe(_ => {
+      setTimeout(() => {
+        dialogRef.close();
+      }, timeout);
+    });
+    this.route.navigateByUrl('/home');
+  }
+
   onSubmitLogin(): void {
     console.log(this.loginForm.value);
     this.authenticationService.login(this.loginForm.value).subscribe(
@@ -38,21 +55,11 @@ export class LoginComponent implements OnInit {
         this.tokenStorageService.saveToken(data.token);
         this.tokenStorageService.saveUser(data);
         this.isLoggedIn = true;
-        this.route.navigateByUrl('/home').then( (value) => {
-            this.reloadPage();
-          }
-        );
-      },
-      err => {
-        this.errorMessage = 'Tên tài khoản và mật khẩu không hợp lệ !';
-        setTimeout(() => {
-          this.errorMessage = '';
-        }, 2000);
-        this.isLoggedIn = false;
-      }, () => {
-        // this.reloadPage();
-      }
-    );
+        this.route.navigateByUrl('/home').then((value) => {
+          this.reloadPage();
+          this.openMessageSuccess();
+        });
+      });
   }
 
   reloadPage(): void {

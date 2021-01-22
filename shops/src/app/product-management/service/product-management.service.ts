@@ -14,10 +14,10 @@ export class ProductManagementService {
   getAllListGoods(): Observable<any> {
     return this.http.get(this.API_GOODS + '/list-good');
   }
-  getListGoodByTrademarkAndSex(trademark: string, sex: string): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('trademark', trademark);
-    params = params.append('sex', sex);
-    return this.http.get(this.API_GOODS + '/search-good', {params});
-  }
+  // getListGoodByTrademarkAndSex(trademark: string, sex: string): Observable<any> {
+  //   let params = new HttpParams();
+  //   params = params.append('trademark', trademark);
+  //   params = params.append('sex', sex);
+  //   return this.http.get(this.API_GOODS + '/search-good', {params});
+  // }
 }

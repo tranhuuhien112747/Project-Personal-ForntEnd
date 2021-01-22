@@ -37,9 +37,9 @@
         </div>
         <!-- Select items -->
         <div class="select-this">
-          <form class="d-flex">
+          <div class="d-flex">
             <div class="select-itms">
-              <select name="select" id="select1" #select>
+              <select name="select" id="select1">
                 <option value="0" selected> Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -52,7 +52,7 @@
             <!--                <option value="Female">Female</option>-->
             <!--              </select>-->
             <!--            </div>-->
-          </form>
+          </div>
         </div>
       </div>
       <!-- Nav Card -->
@@ -65,7 +65,7 @@
                 <div class="popular-img" style="background-color: #f7ffbe">
                   <img src="{{el.image}}" alt="" width="150" height="340">
                   <div class="img-cap">
-                    <span>Add to cart</span>
+                    <span (click)="saveToCartsUser(el.idGoods)">Add to cart</span>
                   </div>
                   <div class="favorit-items">
                     <span class="flaticon-heart"></span>
@@ -86,7 +86,7 @@
                 <div class="popular-img" style="background-color: #f7ffbe">
                   <img src="{{el.image}}" alt="" width="150" height="340">
                   <div class="img-cap">
-                    <span>Add to cart</span>
+                    <span (click)="saveToCartsUser(el.idGoods)">Add to cart</span>
                   </div>
                   <div class="favorit-items">
                     <span class="flaticon-heart"></span>
@@ -108,7 +108,7 @@
                 <div class="popular-img" style="background-color: #f7ffbe">
                   <img src="{{el.image}}" alt="" width="150" height="340">
                   <div class="img-cap">
-                    <span>Add to cart</span>
+                    <span (click)="saveToCartsUser(el.idGoods)">Add to cart</span>
                   </div>
                   <div class="favorit-items">
                     <span class="flaticon-heart"></span>
@@ -130,7 +130,7 @@
                 <div class="popular-img" style="background-color: #f7ffbe">
                   <img src="{{el.image}}" alt="" width="150" height="340">
                   <div class="img-cap">
-                    <span>Add to cart</span>
+                    <span (click)="saveToCartsUser(el.idGoods)">Add to cart</span>
                   </div>
                   <div class="favorit-items">
                     <span class="flaticon-heart"></span>
@@ -145,7 +145,6 @@
           </div>
         </div>
         <!-- Card four-->
-
       </div>
       <!-- End Nav Card -->
     </div>

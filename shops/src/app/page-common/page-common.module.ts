@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SupportComponent} from './component/support/support.component';
 import {BlogComponent} from './component/blog/blog.component';
 import {BlogDetailComponent} from './component/blog-detail/blog-detail.component';
+import { NotificationMessageComponent } from './component/notification-message/notification-message.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {BlogDetailComponent} from './component/blog-detail/blog-detail.component
     ContactComponent,
     SupportComponent,
     BlogComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    NotificationMessageComponent
   ],
   exports: [
     HeaderComponent,

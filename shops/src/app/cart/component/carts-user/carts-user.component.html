@@ -14,139 +14,79 @@
     </div>
   </div>
   <!--================Cart Area =================-->
-  <section class="cart_area section_padding m-3 p-5">
+  <div class="d-flex" *ngIf="checkDisplay===false">
+    <span> Your shopping cart is empty <a href="shop">Shopping</a></span>
+  </div>
+  <section class="cart_area section_padding m-3 p-5" *ngIf="checkDisplay===true">
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
-          <table class="table">
-            <thead >
-            <tr>
-              <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder;">Product</th>
-              <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Price</th>
-              <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Quantity</th>
-              <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="../../../../assets/assets/img/gallery/card1.png" alt="" />
+          <form [formGroup]="formUpdateCart">
+            <table class="table" formArrayName="listCartUpdate">
+              <thead>
+              <tr>
+                <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder;">Product</th>
+                <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Price</th>
+                <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Quantity</th>
+                <th scope="col" style="color: #0b1c39;font-size: 15px;font-weight: bolder">Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let cart of listCartUpdate.controls, let i=index">
+                <ng-container [formGroupName]="i">
+                  <td>
+                    <div class="media">
+                      <input type="hidden" formControlName="idCart">
+                      <div class="d-flex">
+                        <img src="{{cart.value.image}}" alt=""/>
+                      </div>
+                      <div class="media-body">
+                        <p>{{cart.value.goodsName}}-{{cart.value.categorySex}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>{{cart.value.price}}</h5>
+                  </td>
+                  <td>
+                    <div class="product_count">
+                      <input class="input-number" formControlName="quantity" type="number" [value]="cart.value.quantity"
+                             min="0"
+                             #quantity [readOnly]="check===true"
+                             (change)="moneyProduct(cart.value.good,quantity.value)">
+                    </div>
+                  </td>
+                  <td>
+                    <h5>{{cart.value.quantity * formatNumber(cart.value.price)}}</h5>
+                  </td>
+                </ng-container>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5 style="color: darkblue;font-weight: bolder;font-size: 17px">Subtotal:</h5>
+                </td>
+                <td>
+                  <h5>{{this.totalMoney}}</h5>
+                </td>
+              </tr>
+              <tr class="bottom_button">
+                <td>
+                  <a  style="background-color: seagreen" class="btn_1 text-light font-weight-bold" href="shop">Continue Shopping</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="cupon_text float-right">
+                    <a [hidden]="check===true" style="background-color:crimson" class="btn_1 text-light font-weight-bold" (click)="openCheckOut()">Proceed to checkout</a>
                   </div>
-                  <div class="media-body">
-                    <p>Minimalistic shop for multipurpose use</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <h5>$360.00</h5>
-              </td>
-              <td>
-                <div class="product_count">
-                  <input class="input-number" type="number" value="1" min="0">
-                </div>
-              </td>
-              <td>
-                <h5>$720.00</h5>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="../../../../assets/assets/img/gallery/card2.png" alt="" />
-                  </div>
-                  <div class="media-body">
-                    <p>Minimalistic shop for multipurpose use</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <h5>$360.00</h5>
-              </td>
-              <td>
-                <div class="product_count">
-                  <input class="input-number" value="1" type="number" min="0">
-                </div>
-              </td>
-              <td>
-                <h5>$720.00</h5>
-              </td>
-            </tr>
-            <tr class="bottom_button">
-              <td>
-                <a class="btn_1" href="#">Update Cart</a>
-              </td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="cupon_text float-right">
-                  <a class="btn_1" href="#">Close Coupon</a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Subtotal</h5>
-              </td>
-              <td>
-                <h5>$2160.00</h5>
-              </td>
-            </tr>
-            <tr class="shipping_area">
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Shipping</h5>
-              </td>
-              <td>
-                <div class="shipping_box">
-                  <ul class="list">
-                    <li>
-                      Flat Rate: $5.00
-                      <input type="radio" aria-label="Radio button for following text input">
-                    </li>
-                    <li>
-                      Free Shipping
-                      <input type="radio" aria-label="Radio button for following text input">
-                    </li>
-                    <li>
-                      Flat Rate: $10.00
-                      <input type="radio" aria-label="Radio button for following text input">
-                    </li>
-                    <li class="active">
-                      Local Delivery: $2.00
-                      <input type="radio" aria-label="Radio button for following text input">
-                    </li>
-                  </ul>
-                  <h6>
-                    Calculate Shipping
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                  </h6>
-                  <select class="shipping_select">
-                    <option value="1">Bangladesh</option>
-                    <option value="2">India</option>
-                    <option value="4">Pakistan</option>
-                  </select>
-                  <select class="shipping_select section_bg">
-                    <option value="1">Select a State</option>
-                    <option value="2">Select a State</option>
-                    <option value="4">Select a State</option>
-                  </select>
-                  <input class="post_code" type="text" placeholder="Postcode/Zipcode" />
-                  <a class="btn_1" href="#">Update Details</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
-          </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </form>
+          <app-check-out *ngIf="check===true"></app-check-out>
         </div>
       </div>
     </div>

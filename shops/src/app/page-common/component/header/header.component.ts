@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {User} from '../../model/User';
 import {AuthenticationService} from '../../service/auth/authentication.service';
 import {TokenStorageService} from '../../service/token-storage/token-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private authenticationService: AuthenticationService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private route: Router
   ) {
   }
 
@@ -43,4 +45,7 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
+  openCartUser() {
+    this.route.navigateByUrl('/cart');
+  }
 }

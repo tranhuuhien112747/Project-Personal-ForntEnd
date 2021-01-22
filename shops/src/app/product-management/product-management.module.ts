@@ -7,6 +7,7 @@ import { DetailProductComponent } from './component/detail-product/detail-produc
 import { ListProductComponent } from './component/list-product/list-product.component';
 import {RouterModule} from '@angular/router';
 import {ProductRoute} from './product-management.routing';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -17,9 +18,10 @@ import {ProductRoute} from './product-management.routing';
     RemoveProductComponent,
     DetailProductComponent,
     ListProductComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(ProductRoute),
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(ProductRoute),
+        ReactiveFormsModule,
+    ]
 })
 export class ProductManagementModule { }

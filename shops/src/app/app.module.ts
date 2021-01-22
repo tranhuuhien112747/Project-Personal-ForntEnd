@@ -8,6 +8,7 @@ import {UserManagementModule} from './user-management/user-management.module';
 import {ProductManagementModule} from './product-management/product-management.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CartModule} from './cart/cart.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {CartModule} from './cart/cart.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     PageCommonModule,
     UserManagementModule,
     ProductManagementModule,
